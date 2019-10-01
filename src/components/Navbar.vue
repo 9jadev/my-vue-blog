@@ -1,38 +1,39 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
-        <div class="container">
+   <div>
+        <b-navbar toggleable="lg"  type="light" variant="light" >
+            <b-navbar-brand href="#">
             <router-link class="navbar-brand" to="/">
-                 <img src="../assets/logo.png" width="30px" height="30px" alt="logo">
+                    <img src="../assets/logo.png" width="30px" height="30px" alt="logo">
             </router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" v-if="!isAuthUser">
-                        <router-link class="nav-link" to="/login"> Login </router-link>
-                    </li>
-                     <li class="nav-item"  v-if="!isAuthUser">
-                        <router-link class="nav-link" to="/signup"> Signup </router-link>
-                    </li>
-                    <li class="nav-item"  v-if="isAuthUser">
+            </b-navbar-brand>
+
+                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+                <b-collapse id="nav-collapse" is-nav>
+                    <b-navbar-nav>
+                        <b-nav-item  v-if="!isAuthUser">
+                            <router-link class="nav-link" to="/login"> Login </router-link>
+                        </b-nav-item>
+                        <b-nav-item  v-if="!isAuthUser">
+                            <router-link class="nav-link" to="/signup"> Signup </router-link>
+                        </b-nav-item>
+                    </b-navbar-nav>
+                    <!-- Right aligned nav items -->
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-item  v-if="isAuthUser">
                         <router-link class="nav-link" to="/articles/create"> Create Articles </router-link>
-                    </li>
-                    <li class="nav-item dropdown" v-if="isAuthUser">
-                        <a class="nav-link dropdown-toggle" href="#" @click="logout()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hey {{ isAuthUser.name}}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
-                   
-                </ul>    
-            </div>
-        </div>
-        
-    </nav>
+                        </b-nav-item>
+                        <b-nav-item-dropdown right  v-if="isAuthUser">
+                        <!-- Using 'button-content' slot -->
+                        <template v-slot:button-content>
+                            <em> Hey {{ isAuthUser.name}} </em>
+                        </template>
+                        <b-dropdown-item @click="logout()">Sign Out</b-dropdown-item>
+                        </b-nav-item-dropdown>
+                    </b-navbar-nav>
+                </b-collapse>
+        </b-navbar>
+</div>
 </template>
 
 <script>
