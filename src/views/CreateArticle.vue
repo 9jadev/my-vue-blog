@@ -75,9 +75,9 @@ export default {
             this.loading = true;
             const form = new FormData();
             form.append('file', this.image);
-            form.append('upload_preset',process.env.VUE_APP_CLOUDINARY_PRESET);
-            form.append('api_key',process.env.VUE_APP_CLOUDINARY_API_KEY); 
-            Axios.post(process.env.VUE_APP_CLOUDINARY_ARTICLE, form).then(res =>{
+            form.append('upload_preset','x62tzib0');
+            form.append('api_key','428216586742493'); 
+            Axios.post('https://api.cloudinary.com/v1_1/examqueat/image/upload', form).then(res =>{
                Axios.post(`${config.apiUrl}/articles`,{
                     title: this.title,
                     content: this.content,
@@ -92,9 +92,11 @@ export default {
                     this.$noty.success('Article Created Successfully. ');
                     this.$router.push('/');
                 }).catch(() => {
+                   // console.log(err);
                     this.$noty.error('Something Went Wrong. ');
                 })
             }).catch(() => {
+                  //  console.log(err);
                     this.loading = false;    
                     this.$noty.error('Something Went Wrong. ');
             });

@@ -17,7 +17,7 @@
                         <router-link class="nav-link" to="/signup"> Signup </router-link>
                     </li>
                     <li class="nav-item"  v-if="isAuthUser">
-                        <router-link class="nav-link" to="//articles/create"> Create Articles </router-link>
+                        <router-link class="nav-link" to="/articles/create"> Create Articles </router-link>
                     </li>
                     <li class="nav-item dropdown" v-if="isAuthUser">
                         <a class="nav-link dropdown-toggle" href="#" @click="logout()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
